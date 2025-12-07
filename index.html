@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BizInsight AI - 상권 분석</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+              }
+            },
+            animation: {
+              'blob': 'blob 7s infinite',
+              'scan': 'scan 4s linear infinite',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'bounce-slow': 'bounce 3s infinite',
+              'scroll': 'scroll 40s linear infinite',
+            },
+            keyframes: {
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' },
+              },
+              scan: {
+                '0%': { backgroundPosition: '0% 0%' },
+                '100%': { backgroundPosition: '0% 100%' }
+              },
+              fadeIn: {
+                'from': { opacity: '0', transform: 'translateY(10px)' },
+                'to': { opacity: '1', transform: 'translateY(0)' }
+              },
+              scroll: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #aaa; }
+      
+      /* Pause animation on hover */
+      .hover\:pause:hover {
+        animation-play-state: paused;
+      }
+
+      @media print {
+        @page { margin: 15mm; size: A4; }
+        body { 
+          -webkit-print-color-adjust: exact !important; 
+          print-color-adjust: exact !important; 
+          background-color: white !important;
+          color: black !important;
+        }
+        
+        .print\:hidden { display: none !important; }
+        .print\:block { display: block !important; }
+        
+        /* Reset Dark Mode Styles for Print */
+        .dark\:text-white, .text-white { color: #1e293b !important; }
+        .dark\:text-slate-200, .dark\:text-slate-300, .dark\:text-slate-400 { color: #475569 !important; }
+        .dark\:bg-slate-800, .dark\:bg-slate-900, .bg-slate-800, .bg-slate-900 { 
+          background-color: white !important; 
+          border: 1px solid #e2e8f0 !important;
+        }
+        
+        /* Gradients removal for clarity */
+        .bg-gradient-to-r, .bg-gradient-to-br, .bg-gradient-to-tr {
+          background: white !important;
+          border: 1px solid #cbd5e1 !important;
+        }
+        
+        /* Layout fixes */
+        .break-inside-avoid { break-inside: avoid; }
+        .shadow-lg, .shadow-xl, .shadow-2xl { box-shadow: none !important; border: 1px solid #e2e8f0 !important; }
+        
+        /* Chart fixes */
+        .recharts-responsive-container { width: 100% !important; height: 300px !important; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.4.1",
+    "phosphor-react": "https://aistudiocdn.com/phosphor-react@^1.4.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div id="root" style="position: relative; z-index: 10;"></div>
+  </body>
+</html>
